@@ -1,0 +1,390 @@
+I"e&<p>– Huaming 2018.09.18</p>
+
+<h1 id="background">Background</h1>
+
+<h2 id="definition">Definition</h2>
+
+<p>Definition</p>
+
+<ul>
+  <li>
+    <p>Anomaly detection</p>
+
+    <ul>
+      <li>
+        <p>An important problem regarding finding patterns in data, which
+do not conform to expected behavior</p>
+      </li>
+      <li>
+        <p>These patterns, or anomalies in data will translate to
+significant actionable information.</p>
+      </li>
+      <li>
+        <p><strong>Anomalies</strong>, <strong>outliers</strong>, discordant observations,
+exceptions, aberrations etc...</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Extensive use in a wide variety of applications</p>
+
+    <ul>
+      <li>
+        <p>Fraud detection for credit cards, insurance or health care</p>
+      </li>
+      <li>
+        <p>intrusion detection for cyber-security</p>
+      </li>
+      <li>
+        <p>fault detection in safety critical systems</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Originally started from statistical community <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+  </li>
+</ul>
+
+<p>Definition Anomalies are patterns in data that do not conform to a well
+defined notion of normal behavior</p>
+
+<p><img src="/images/20180918_1.png" alt="image" /></p>
+
+<p>Definition Figure 1 illustrates anomalies in a simple 2-dimensional data
+set. <strong>$N_1$ and **$N_2$ are normal regions, while $o_1$ and $o_2$ and
+region **$O_3$ are anomalies.<br />
+Observing or detecting an anomaly is mostly via interesting
+features:</strong><em>**</em></p>
+
+<ul>
+  <li>
+    <p>Malicious activity in fraud detection, abnormal sequence patterns of
+real life relevance</p>
+  </li>
+  <li>
+    <p>All of the reasons have a common characteristic that they are
+interesting to the analyst</p>
+  </li>
+</ul>
+
+<p>Definition Anomaly detection is related to but distinct from noise
+removal and noise accommodation.</p>
+
+<ul>
+  <li>
+    <p>Noise is defined as a signal in data which is not of interest but
+acting as hindrance to data analyst.</p>
+  </li>
+  <li>
+    <p>Thus, noise removal is referred to removing unwanted signal in data
+before any data analysis.</p>
+  </li>
+  <li>
+    <p>Noise accommodation is to immunize a statistical model estimation
+against anomalous observations.</p>
+  </li>
+</ul>
+
+<p>Definition Novelty detection is another topic which may be overlapped
+with anomaly detection:</p>
+
+<ul>
+  <li>
+    <p>It is to detect previously unobserved patterns in the data, may be
+new topic or new group.</p>
+  </li>
+  <li>
+    <p>The novel patterns are added to the normal model once detected</p>
+  </li>
+  <li>
+    <p>Anomalies will be sometimes hard to be defined as one specific
+group, and are also undesired for the information translation.</p>
+  </li>
+</ul>
+
+<h2 id="types-and-challenges">Types and challenges</h2>
+
+<p>Types of Anomalies Anomalies could be broadly categorized as:</p>
+
+<ul>
+  <li>
+    <p>Point anomalies</p>
+
+    <ul>
+      <li>an individual data instance. Taking credit card fraud detection
+as example, <em>amount spent</em> is used as the feature for
+simplicity.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Contextual anomalies</p>
+
+    <ul>
+      <li>also termed as conditional anomaly. Imaging temperature around
+$30^{\circ}$ may be considered as normal during summer, it is
+taken as anomaly during winter.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Collective anomalies</p>
+
+    <ul>
+      <li>A group of data instances collectively define the anomaly
+characteristics, which mostly involve temporal attribute.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Challenges Though anomalies detection has been extensively researched,
+in most cases, this topic is answered dependently:</p>
+
+<ul>
+  <li>
+    <p>Difficult a general normal region which may encompasses every
+possible normal behavior</p>
+  </li>
+  <li>
+    <p>Both normal behavior and anomalies are evolving at all times, which
+means a current notion may not be sufficient</p>
+  </li>
+  <li>
+    <p>The availability of labeled data for training/validation of models</p>
+  </li>
+  <li>
+    <p>Noise from the data may impair the model and the performance</p>
+  </li>
+</ul>
+
+<p>Solutions Most of the existing anomaly detection techniques solve a
+specific formulation of the problem.</p>
+
+<ul>
+  <li>
+    <p>Nature of the data</p>
+  </li>
+  <li>
+    <p>Availability of labeled data</p>
+  </li>
+  <li>
+    <p>Type of anomalies</p>
+  </li>
+</ul>
+
+<h1 id="approaches">Approaches</h1>
+
+<h2 id="data-in-and-out-from-models">Data in and out from models</h2>
+
+<p>Data Labels It is often highly expensive to obtaining labeled data which
+is accurate as well as representative of all types of patterns.</p>
+
+<ul>
+  <li>
+    <p>Mostly data of normal patterns are easy to obtain</p>
+  </li>
+  <li>
+    <p>New types of anomalies may arise</p>
+  </li>
+  <li>
+    <p>Anomalies are rare in specific areas, such as airline industry</p>
+  </li>
+</ul>
+
+<p>Data Labels</p>
+
+<ul>
+  <li>
+    <p>Supervised anomaly detection:</p>
+
+    <ul>
+      <li>
+        <p>Imbalanced issue: anomalies are far fewer compared to normal
+instances – down sampling normal instances or up sampling
+anomalies</p>
+      </li>
+      <li>
+        <p>Labels obtaining – injecting artificial anomalies in normal
+data sets</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Semi-supervised anomaly detection: only normal data are available</p>
+  </li>
+  <li>
+    <p>Unsupervised anomaly detection: basic assumption is normal instances
+are far more than anomalies</p>
+  </li>
+</ul>
+
+<p>Output for anomaly detection</p>
+
+<ul>
+  <li>
+    <p><strong>Scores:</strong> The output is mostly a ranked list of anomalies</p>
+  </li>
+  <li>
+    <p><strong>Labels:</strong> The output is mostly a binary label regarding normal or
+anomalous</p>
+  </li>
+</ul>
+
+<h2 id="techniques">Techniques</h2>
+
+<p>Statistical Models <strong>Normal data instances occur in high probability
+regions of a stochastic model, while anomalies occur in the low
+probability regions of the stochastic model.</strong><br />
+Statistical techniques fit a statistical model (usually for normal
+behavior) to the given data and then apply a statistical inference test
+to determine if an unseen instance belongs to this model or not.
+Instances that have a low probability to be generated from the learnt
+model, based on the applied test statistic, are declared as anomalies.</p>
+
+<p>Statistical Models</p>
+
+<ul>
+  <li>
+    <p>Gaussian Model</p>
+
+    <ul>
+      <li>
+        <p>box plot rule: univariate scalars</p>
+      </li>
+      <li>
+        <p>Grubb’s test: univariate scalars</p>
+      </li>
+      <li>
+        <p>Extensions: Mahalanobis distance for test instance $X$ to reduce
+multivariate observations to univariate scalars</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Regression Model</p>
+  </li>
+  <li>
+    <p>Mixture of Parametric Distributions based Model</p>
+  </li>
+</ul>
+
+<p>Classification based techniques <strong>Assumption: A classifier that can
+distinguish between normal and anomalous classes can be learnt in the
+given feature space.</strong>\</p>
+
+<ul>
+  <li>
+    <p>Multi-class: Data contains labeled instances belonging to multiple
+normal classes.</p>
+
+    <ul>
+      <li>A instance is considered as anomalies once it is not classified
+as one of the normal classes</li>
+    </ul>
+  </li>
+  <li>
+    <p>One-class: Data for training have only one class label.</p>
+
+    <ul>
+      <li>one-class SVMs, one-class Kernel Fisher Discriminants</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Classification based techniques</p>
+
+<ul>
+  <li>
+    <p>Neural Network based solutions: MLP, Replicator Neural Networks</p>
+  </li>
+  <li>
+    <p>Bayesian Networks based solutions</p>
+  </li>
+  <li>
+    <p>SVM based solutions</p>
+  </li>
+  <li>
+    <p>Rule based solutions</p>
+  </li>
+</ul>
+
+<p>Nearest Neighbor based techniques Computing distance or similarity
+between two data instances with different ways. Mostly, it is
+categorized by two directions: distance to $k_th$ nearest neighbor,
+relative density.</p>
+
+<ul>
+  <li>
+    <p>Continuous attributes: euclidean distance is popular</p>
+  </li>
+  <li>
+    <p>Categorical attributes: simple matching coefficient is often used</p>
+  </li>
+  <li>
+    <p>Multivariate data instances: Combination of the distances for each
+attribute</p>
+  </li>
+</ul>
+
+<p>Nearest Neighbor based techniques</p>
+
+<ul>
+  <li>
+    <p>Local outlier factor (LOF): an anomaly score to a given data
+instance</p>
+  </li>
+  <li>
+    <p>Connectivity-based outlier factor (COF): variation of the LOF</p>
+  </li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p>Summary</p>
+
+<ul>
+  <li>
+    <p>Notion of Anomalies Detection</p>
+  </li>
+  <li>
+    <p>Classification of Anomalies Detection</p>
+  </li>
+  <li>
+    <p>Techniques for Anomalies Detection</p>
+  </li>
+</ul>
+
+<p>Todo</p>
+
+<ul>
+  <li>
+    <p>Define the requirements for anomalies detection</p>
+  </li>
+  <li>
+    <p>Characteristics of the available data</p>
+  </li>
+  <li>
+    <p>Techniques evaluations: most of the techniques could be found from
+scikit-learn and open source code</p>
+  </li>
+</ul>
+
+<p>Reference</p>
+<ol>
+  <li>Chandola, Varun, Arindam Banerjee, and Vipin Kumar.
+"Anomaly detection: A survey." ACM computing surveys (CSUR) 41.3
+(2009): 15.</li>
+  <li>Sestito, Guilherme Serpa, et al. "A Method for Anomalies Detection
+in Real-Time Ethernet Data Traffic Applied to PROFINET." IEEE
+Transactions on Industrial Informatics 14.5 (2018): 2171-2180.</li>
+  <li>Stojanovic, Ljiljana, et al. "Big-data-driven anomaly detection in
+industry (4.0): An approach and a case study." Big Data (Big Data),
+2016 IEEE International Conference on. IEEE, 2016.</li>
+</ol>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Edgeworth, F. Y. 1887. On discordant observations. Philosophical
+Magazine 23, 5, 364-375. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET
